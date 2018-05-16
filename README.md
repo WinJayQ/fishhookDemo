@@ -2,16 +2,16 @@
 iOS逆向之fishhookDemo
 题外话：此教程是一篇严肃的学术探讨类文章，仅仅用于学习研究，也请读者不要用于商业或其他非法途径上，笔者一概不负责哟~~
 
-##准备工作
+## 准备工作
 * 非越狱的iPhone手机
 * [fishhook](https://github.com/facebook/fishhook)
 
-##Demo 1:
+## Demo 1:
 
-###1、新建工程，将fishhook文件拖入工程
+### 1、新建工程，将fishhook文件拖入工程
 ![image.png](https://upload-images.jianshu.io/upload_images/1013424-54369e6d3c79349b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###2、我们的目的是hook系统的NSLog函数，编写代码
+### 2、我们的目的是hook系统的NSLog函数，编写代码
 ```
 //函数指针，用来保存原始的函数的地址
 static void(*old_nslog)(NSString *format, ...);
@@ -29,7 +29,7 @@ void myNSLog(NSString *format, ...){
 
 ```
 
-###3、了解fishhook中的struct rebinding结构体
+### 3、了解fishhook中的struct rebinding结构体
 ```
 struct rebinding {
         const char *name; //需要HOOK的函数名称，字符串
@@ -60,14 +60,14 @@ struct rebinding {
     rebind_symbols(rebs, 1);
 ```
 
-###4、运行，点击屏幕，打印的是我们自己的myNSLog
+### 4、运行，点击屏幕，打印的是我们自己的myNSLog
 ![image.png](https://upload-images.jianshu.io/upload_images/1013424-1e5b73859297c15b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **是不是很爽，是不是很简单？好，看点不一样的**
 
-##Demo2
+## Demo2
 
-###1、自己写了两个函数func和newFunc：
+### 1、自己写了两个函数func和newFunc：
 ```
 void func(const char *str){
     NSLog(@"%s",str);
@@ -80,11 +80,11 @@ void newFunc(const char *str){
 }
 ```
 
-###2、现在的目的是想交换func和newFunc，当调用func时，我们调用newFunc，跟Demo1一样的编写代码
+### 2、现在的目的是想交换func和newFunc，当调用func时，我们调用newFunc，跟Demo1一样的编写代码
 
 ![image.png](https://upload-images.jianshu.io/upload_images/1013424-56230c9c355548a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###3、运行点击屏幕，发现打印的是func中的文字，并不是newFunc的文字
+### 3、运行点击屏幕，发现打印的是func中的文字，并不是newFunc的文字
 ![image.png](https://upload-images.jianshu.io/upload_images/1013424-cd49ec9f8cd6a89f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **代码没有任何问题，但就是勾不住；自己写的函数是勾不住的，具体原因见下回分解 😁**
