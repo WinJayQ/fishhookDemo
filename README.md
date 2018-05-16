@@ -1,10 +1,13 @@
 # fishhookDemo
 iOS逆向之fishhookDemo
 题外话：此教程是一篇严肃的学术探讨类文章，仅仅用于学习研究，也请读者不要用于商业或其他非法途径上，笔者一概不负责哟~~
+
 ##准备工作
 * 非越狱的iPhone手机
 * [fishhook](https://github.com/facebook/fishhook)
+
 ##Demo 1:
+
 ###1、新建工程，将fishhook文件拖入工程
 ![image.png](https://upload-images.jianshu.io/upload_images/1013424-54369e6d3c79349b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -25,6 +28,7 @@ void myNSLog(NSString *format, ...){
 }
 
 ```
+
 ###3、了解fishhook中的struct rebinding结构体
 ```
 struct rebinding {
@@ -60,7 +64,9 @@ struct rebinding {
 ![image.png](https://upload-images.jianshu.io/upload_images/1013424-1e5b73859297c15b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **是不是很爽，是不是很简单？好，看点不一样的**
+
 ##Demo2
+
 ###1、自己写了两个函数func和newFunc：
 ```
 void func(const char *str){
@@ -73,6 +79,7 @@ void newFunc(const char *str){
     funcP(str);
 }
 ```
+
 ###2、现在的目的是想交换func和newFunc，当调用func时，我们调用newFunc，跟Demo1一样的编写代码
 
 ![image.png](https://upload-images.jianshu.io/upload_images/1013424-56230c9c355548a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
